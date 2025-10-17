@@ -57,10 +57,15 @@ public class CityListTest {
         City mockCity = mockCity();
         assertEquals(true, cityList.hasCity(mockCity));
 
-//        System.out.println(cityList);
-        for (City c : cityList.getCities()) {
-            System.out.println(c.getCityName());
-        }
+        assertEquals(false, cityList.hasCity(new City("bruh", "moment")));
+    }
+
+    @Test
+    public void testDeleteCity() {
+        CityList cityList = mockCityList();
+
+        City mockCity = mockCity();
+
         try {
             cityList.delete(mockCity);
         } catch (Exception e) {
@@ -78,10 +83,24 @@ public class CityListTest {
         });
 
         Assertions.assertEquals("city not in list", thrown.getMessage());
+    }
 
+    @Test
+    public void testCountCity() {
+        CityList cityList = mockCityList();
+        City mockCity = mockCity();
 
+        assertEquals(1, cityList.getCities().size());
+
+        try {
+            cityList.delete(mockCity);
+        } catch (Exception e) {
+            System.out.println("error: " + e);
+        }
         assertEquals(0, cityList.getCities().size());
     }
+
+
 
     //1) Implement and test these methods: - hasCity(City city) - When given a city, return whether or not it belongs in the list
 //

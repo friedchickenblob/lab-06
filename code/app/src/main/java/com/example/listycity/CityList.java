@@ -53,6 +53,10 @@ public class CityList {
         }
     }
 
+    public int cityCount() {
+        return cities.size();
+    }
+
 
 
 }
